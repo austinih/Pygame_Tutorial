@@ -25,6 +25,25 @@ def draw_window(red, yellow):
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
     pygame.display.update()
 
+def yellow_handle_movement(keys_pressed, yellow):
+        if keys_pressed[pygame.K_a]: # LEFT
+            yellow.x -= 5
+        if keys_pressed[pygame.K_d]: # RIGHT
+            yellow.x += 5
+        if keys_pressed[pygame.K_w]: # UP
+            yellow.y -= 5
+        if keys_pressed[pygame.K_s]: # DOWN
+            yellow.y += 5
+
+def red_handle_movement(keys_pressed, red):
+        if keys_pressed[pygame.K_LEFT]: # LEFT
+            red.x -= 5
+        if keys_pressed[pygame.K_RIGHT]: # RIGHT
+            red.x += 5
+        if keys_pressed[pygame.K_UP]: # UP
+            red.y -= 5
+        if keys_pressed[pygame.K_DOWN]: # DOWN
+            red.y += 5
 
 def main():
     red = pygame.Rect(700,300,SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
@@ -40,14 +59,9 @@ def main():
                 run = False
         
         keys_pressed = pygame.key.get_pressed()
-        if keys_pressed[pygame.K_a]: # LEFT
-            yellow.x -= 5
-        if keys_pressed[pygame.K_d]: # RIGHT
-            yellow.x += 5
-        if keys_pressed[pygame.K_w]: # UP
-            yellow.y -= 5
-        if keys_pressed[pygame.K_s]: # DOWN
-            yellow.y += 5
+        yellow_handle_movement(keys_pressed,yellow)
+        red_handle_movement(keys_pressed,red)
+        
 
         draw_window(red, yellow)
 
